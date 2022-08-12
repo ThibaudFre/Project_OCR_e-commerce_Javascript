@@ -2,6 +2,14 @@
 /*Product*/
 /*********/
 
+/*Error style*/
+.error{
+	color: #ffe5e5;
+	font-size: 20px;
+	font-weight: 600;
+	font-style: italic;
+}
+
 /*Item Details*/
 .item {
 	margin: 135px 0;
