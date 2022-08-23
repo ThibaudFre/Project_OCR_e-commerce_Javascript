@@ -11,7 +11,6 @@ getAllContent("http://localhost:3000/api/products")
                     - an h3 title for the kanap name
                     - a p as a description of the product*/
         for (let item of data) {
-            console.log(item);
             const img = document.createElement("img");
             img.src = item.imageUrl;
             img.alt = item.altTxt;

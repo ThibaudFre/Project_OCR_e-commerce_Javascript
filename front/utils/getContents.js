@@ -2,8 +2,7 @@ const getAllContent = async (url) =>{
     try{
         const response =  await fetch(url);
         if (response.ok){
-            let products = await response.json();
-            return products;
+            return await response.json();
         }else{
             throw new Error("error not found");
         }

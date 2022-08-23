@@ -1,4 +1,5 @@
-import {notValid, quantityInput, overHundred} from "../js/product.js";
+import {quantityInput, containSetting, addToCart} from "./../js/product.js";
+import {notValid, overHundred, errorNumb} from "./../utils/errorHandler.js"
 
 const getBasket = () => {
    let basket = localStorage.getItem("basket");
@@ -15,20 +16,16 @@ const saveBasket = (basket) => {
 
 const addBasket = (product) => {
     let basket = getBasket();
-    let foundProduct = basket.find(p => p.name == product.name);
+    let foundProduct = basket.find(p => p.name == product.name && p.color == product.color);
     if(foundProduct != undefined){
         const sumQuantity = foundProduct.quantity + product.quantity ;
     
         if( sumQuantity <= 100){
             foundProduct.quantity += product.quantity;
-            foundProduct.price += product.price;
-            console.log("localStorage is not [] and the quant is below 100", basket);
         }else if(sumQuantity > 100){
-            console.log("difference is: ", sumQuantity - 100);
-            notValid(overHundred, quantityInput);
+            notValid(containSetting[0], overHundred, quantityInput, addToCart);
         }
     }else{
-        console.log("localStorage is empty", basket);
         product.quantity = product.quantity;
         basket.push(product);
     }
