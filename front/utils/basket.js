@@ -1,9 +1,9 @@
-import {quantityInput, containSetting, addToCart} from "./../js/product.js";
-import {notValid, overHundred, errorNumb} from "./../utils/errorHandler.js"
+import {quantityInput, containSetting, addToCart} from "../js/product.js";
+import {notValid, overHundred, errorNumb} from "../utils/errorHandler.js"
 
 const getBasket = () => {
    let basket = localStorage.getItem("basket");
-   if(basket == null){
+   if(!basket){
     return [];
    }else{
     return JSON.parse(basket);

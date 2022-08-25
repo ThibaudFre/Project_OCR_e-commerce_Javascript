@@ -1,8 +1,7 @@
-import getAllContent from "./../utils/getContents.js";
-import { postOrder } from "./../utils/postRequest.js";
+import getAllContent from "../utils/getContents.js";
+import { postOrder } from "../utils/postRequest.js";
 import { ifValid, notValid, errNaN, errorNumb } from "../utils/errorHandler.js";
-import { getBasket, saveBasket } from "./../utils/basket.js";
-import { quantityInput } from "./product.js";
+import { getBasket, saveBasket } from "../utils/basket.js";
 
 let panier = getBasket();
 const cartItems = document.getElementById('cart__items');
@@ -97,7 +96,7 @@ const changeLocalStorage = (e) => {
     } else {
         ifValid(e.target.parentElement.parentElement, errorNumb, e.target, orderButton);
         for (let product of productsList) {
-            if (product.id == id.substring(1, id.length - 1) && product.color == color.substring(1, color.length - 1)) {
+            if (product.id === id.substring(1, id.length - 1) && product.color === color.substring(1, color.length - 1)) {
                 product.quantity = newNumb;
             }
         }
@@ -162,7 +161,7 @@ const postToOrder = (e) => {
     checkAdress();
     checkCity();
     checkEmail();
-    if (orderButton.disabled == false) {
+    if (!orderButton.disabled) {
         const order = createObjectOrder();
         postOrder(order);
         window.location.href = "./confirmation.html";
