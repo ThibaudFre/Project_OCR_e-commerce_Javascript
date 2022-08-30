@@ -1,4 +1,3 @@
-import getAllContent from "../utils/getContents.js";
 import { postOrder } from "../utils/postRequest.js";
 import { ifValid, notValid, errNaN, errorNumb } from "../utils/errorHandler.js";
 import { getBasket, saveBasket } from "../utils/basket.js";
@@ -170,7 +169,12 @@ const postToOrder = (e) => {
 
 if (panier.length > 0) {
     for (let object of panier) {
-        getAllContent(`http://localhost:3000/api/products/${object.id}`)
+        fetch(`http://localhost:3000/api/products/${object.id}`)
+            .then(resp => {
+                if (resp.ok) {
+                    return resp.json();
+                }
+            })
             .then(item => {
 
                 //-------------IMAGE----------------------
@@ -257,9 +261,9 @@ if (panier.length > 0) {
                 console.log("produits non chargés", error)
             })
     }
-}else{
-    cartItems.innerHTML =`<p> Votre panier est vide.</p>`
-    cartItems.style.textAlign= "center";
+} else {
+    cartItems.innerHTML = `<p> Votre panier est vide.</p>`
+    cartItems.style.textAlign = "center";
     totalPrice.innerHTML = "0";
     totalProduct.innerHTML = "0";
 }

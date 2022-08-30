@@ -1,9 +1,13 @@
-import getAllContent from "./../utils/getContents.js";
-
 const contenerProducts = document.getElementById("items");
 
-getAllContent("http://localhost:3000/api/products")
+fetch("http://localhost:3000/api/products")
+    .then(resp => {
+        if (resp.ok) {
+            return resp.json();
+        }
+    })
     .then((data) => {
+        console.log(data);
         /*for each product I want to create in the items section:
             - a link wich contain: 
                 - an article wich contain:

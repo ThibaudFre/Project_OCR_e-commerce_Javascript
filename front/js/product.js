@@ -1,4 +1,3 @@
-import getAllContent from "./../utils/getContents.js";
 import { ifValid, notValid, overHundred, errorNumb } from "../utils/errorHandler.js";
 import * as basket from "./../utils/basket.js";
 
@@ -88,7 +87,12 @@ const isButtonDisabled = () => {
 //--------------------------------------------------------
 
 if (id) {
-    getAllContent(`http://localhost:3000/api/products/${id}`)
+    fetch(`http://localhost:3000/api/products/${id}`)
+        .then(resp => {
+            if (resp.ok) {
+                return resp.json();
+            }
+        })
         .then((item) => {
             //Creation in the item__img div of the kanap img product:
             const img = document.createElement("img");

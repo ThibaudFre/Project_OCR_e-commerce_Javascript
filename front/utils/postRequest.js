@@ -8,10 +8,6 @@ const postOrder = async (order) => {
     try {
         const response = await fetch("http://localhost:3000/api/products/order", {
             method: "POST",
-            headers: {
-                'Accept': 'application/json',
-                'Content-Type': 'application/json'
-            },
             body: JSON.stringify(order)
         })
         if (response.ok) {
